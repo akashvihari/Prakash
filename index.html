@@ -371,8 +371,98 @@
         <a href="#store-books-sec" class="shelf-btn"><span class="shelf-icon">📚</span><span class="shelf-name">5. స్టోర్ &amp; బుక్స్</span><span class="shelf-sub">కొత్త &amp; పాత వస్తువులు</span></a>
         <a href="#services-sec" class="shelf-btn"><span class="shelf-icon">🔧</span><span class="shelf-name">6. ఊరి సేవలు (6)</span><span class="shelf-sub">మెకానిక్, ట్రాక్టర్, కూలీలు</span></a>
         <a href="#guide-sec" class="shelf-btn"><span class="shelf-icon">🚑</span><span class="shelf-name">7. మ్యాప్స్ &amp; హెల్ప్</span><span class="shelf-sub">షెడ్స్, ఆంబులెన్స్</span></a>
+
+              <!-- కొత్త 8వ అర: లైవ్ న్యూస్, ఎగ్జామ్ క్విజ్ & సినిమాలు -->
+        <a href="#news-youth-sec" class="shelf-btn"><span class="shelf-icon">📰</span><span class="shelf-name">8. న్యూస్ &amp; యూత్</span><span class="shelf-sub">వార్తలు, క్విజ్, OTT</span></a>
+
       </div>
     </div>
+
+
+
+    <!-- =========================================================================
+         [కొత్త అర 8: లైవ్ తెలుగు వార్తలు, ఎగ్జామ్ క్విజ్, కొత్త సినిమాలు & మనసులో మాట]
+         ========================================================================= -->
+    <section id="news-youth-sec" class="app-section">
+      <div class="sec-head">
+        <div>
+          <h2>📰 8. లైవ్ న్యూస్, ఎగ్జామ్ క్విజ్ &amp; యూత్ కార్నర్</h2>
+          <p>AP రాజకీయాలు, క్రైమ్, VZM/Vizag వార్తలు, జాబ్ ఎగ్జామ్ ప్రశ్నలు, Friday సినిమాలు &amp; మనసులో మాట.</p>
+        </div>
+      </div>
+
+      <!-- 8A. లైవ్ తెలుగు వార్తలు (Live Telugu News: Politics, Crime, VZM & Vizag) -->
+      <div style="background:#fff; border:2px solid #9A3412; border-radius:16px; padding:15px; margin-bottom:16px; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+          <strong style="color:#9A3412; font-size:15px;">🔴 లైవ్ తెలుగు వార్తలు (Live Breaking News)</strong>
+          <span style="font-size:11px; background:#FEE2E2; color:#991B1B; padding:2px 8px; border-radius:999px; font-weight:700;">Auto Live</span>
+        </div>
+
+        <!-- న్యూస్ కేటగిరీ బటన్లు -->
+        <div style="display:flex; gap:6px; overflow-x:auto; margin-bottom:12px; padding-bottom:4px;">
+          <button class="c-tab active" onclick="loadLiveNews('Andhra Pradesh Telugu news', this)">🔥 తాజా వార్తలు</button>
+          <button class="c-tab" onclick="loadLiveNews('Andhra Pradesh politics Telugu', this)">🏛️ రాజకీయాలు (Politics)</button>
+          <button class="c-tab" onclick="loadLiveNews('Andhra Pradesh crime news Telugu', this)">🚨 క్రైమ్ (Crime)</button>
+          <button class="c-tab" onclick="loadLiveNews('Vizianagaram Visakhapatnam Telugu news', this)">📍 VZM &amp; Vizag</button>
+        </div>
+
+        <!-- వార్తలు ఆటోమేటిక్‌గా లోడ్ అయ్యే బాక్స్ -->
+        <div id="liveNewsContainer" style="display:flex; flex-direction:column; gap:8px; font-size:13px;">
+          <p style="color:#57534E;">📡 తాజా వార్తలు లోడ్ అవుతున్నాయి...</p>
+        </div>
+      </div>
+
+      <!-- 8B. యూత్ & స్టూడెంట్స్ 3-in-1 కార్డులు (Exam Quiz + Friday Movies/OTT + Secret Love Wall) -->
+      <div class="grid">
+        
+        <!-- కార్డ్ 1: డైలీ కరెంట్ అఫైర్స్ & జాబ్ ఎగ్జామ్ క్విజ్ (RRB / SSC / AP Police) -->
+        <div class="card" style="padding:15px; border:1.5px solid #1D4ED8;">
+          <div>
+            <span style="background:#DBEAFE; color:#1E40AF; font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px;">🎯 RRB / SSC / AP Police GK</span>
+            <h3 style="font-size:17px; color:#1E3A8A; margin:6px 0;">నేటి కరెంట్ అఫైర్స్ ప్రశ్న</h3>
+            <p id="quizQuestion" style="font-size:13px; color:#1C1917; font-weight:600; margin-bottom:10px;">
+              ప్రశ్న: ఆంధ్రప్రదేశ్‌లో అత్యధిక తీరరేఖ (Coastline) కలిగిన జిల్లా ఏది?
+            </p>
+            <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:8px;">
+              <button onclick="checkQuiz(false, this)" class="btn btn-light" style="text-align:left; font-size:12px;">A) విజయనగరం</button>
+              <button onclick="checkQuiz(true, this)" class="btn btn-light" style="text-align:left; font-size:12px;">B) శ్రీకాకుళం (సరైన సమాధానం)</button>
+              <button onclick="checkQuiz(false, this)" class="btn btn-light" style="text-align:left; font-size:12px;">C) అనకాపల్లి</button>
+            </div>
+            <div id="quizFeedback" style="font-size:12px; font-weight:700;"></div>
+          </div>
+        </div>
+
+        <!-- కార్డ్ 2: ఈ వారం కొత్త సినిమాలు & OTT రిలీజ్‌లు -->
+        <div class="card" style="padding:15px; border:1.5px solid #D97706;">
+          <div>
+            <span style="background:#FEF3C7; color:#92400E; font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px;">🎬 Weekend Cinema &amp; OTT</span>
+            <h3 style="font-size:17px; color:#78350F; margin:6px 0;">ఈ వారం సినిమాలు &amp; OTT</h3>
+            <!-- 👇 కొత్త సినిమాలు & OTT వివరాలు ఇక్కడ ఎడిట్ చేసుకోండి 👇 -->
+            <p id="editableMoviesList" style="font-size:12.5px; color:#44403C; line-height:1.6;">
+              🎥 <b>థియేటర్స్ (S.Kota &amp; VZM):</b> ఈ వారం కొత్త తెలుగు యాక్షన్ &amp; ఫ్యామిలీ సినిమాలు ఆడుతున్నాయి.<br>
+              📱 <b>OTT కొత్త రిలీజ్‌లు:</b> Aha, Prime Video &amp; Hotstar లో ఈ వారం సరికొత్త తెలుగు సినిమాలు &amp; వెబ్ సిరీస్ స్ట్రీమింగ్ అవుతున్నాయి!
+            </p>
+          </div>
+          <a href="https://wa.me/918985240287?text=Hi%20Prakash,%20I%20need%20Movie%20Ticket%20or%20Bike%20Drop%20to%20Theatre:" target="_blank" class="btn btn-amber">🎟️ థియేటర్‌కి బైక్ డ్రాప్ / టికెట్ హెల్ప్</a>
+        </div>
+
+        <!-- కార్డ్ 3: మనసులో మాట / Secret Love Dedication Wall -->
+        <div class="card" style="padding:15px; border:1.5px solid #E11D48; background:linear-gradient(135deg, #FFF1F2, #FFFFFF);">
+          <div>
+            <span style="background:#FFE4E6; color:#9F1239; font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px;">💌 Secret Love &amp; Crush Wall</span>
+            <h3 style="font-size:17px; color:#881337; margin:6px 0;">మనసులో మాట (Anon Dedications)</h3>
+            <!-- 👇 యువత పంపిన ప్రేమ/స్నేహ సందేశాలు ఇక్కడ పేస్ట్ చేయండి 👇 -->
+            <p id="editableSecretLove" style="font-size:12.5px; color:#881337; font-style:italic; line-height:1.6;">
+              "S.Kota బస్ స్టాండ్ దగ్గర రోజు కనిపించే ఆ నవ్వు చూస్తే రోజంతా సంతోషంగా ఉంటుంది... నీ పేరు తెలియకపోయినా నీకు ఎప్పుడూ మంచే జరగాలని కోరుకుంటున్నా!" ❤️
+            </p>
+          </div>
+          <a href="https://wa.me/918985240287?text=Hi%20Prakash,%20Please%20post%20my%20Anonymous%20Love/Friendship%20Message%20(Without%20my%20name):" target="_blank" class="btn" style="background:#E11D48;">💌 మీ మనసులో మాట ఇక్కడ పోస్ట్ చేయండి</a>
+        </div>
+
+      </div>
+    </section>
+
+    
 
     <!-- =========================================================================
          [భాగం 5: అర 1 — ఉచిత క్యాలిక్యులేటర్లు + WHATSAPP VIRAL SHARE]
@@ -1030,6 +1120,141 @@
       document.getElementById("detailsModal").style.display = "flex";
     }
     function closeModal() { document.getElementById("detailsModal").style.display = "none"; }
+
+
+
+    <!-- =========================================================================
+         [కొత్త అర 8: లైవ్ తెలుగు వార్తలు, ఎగ్జామ్ క్విజ్, కొత్త సినిమాలు & మనసులో మాట]
+         ========================================================================= -->
+    <section id="news-youth-sec" class="app-section">
+      <div class="sec-head">
+        <div>
+          <h2>📰 8. లైవ్ న్యూస్, ఎగ్జామ్ క్విజ్ &amp; యూత్ కార్నర్</h2>
+          <p>AP రాజకీయాలు, క్రైమ్, VZM/Vizag వార్తలు, జాబ్ ఎగ్జామ్ ప్రశ్నలు, Friday సినిమాలు &amp; మనసులో మాట.</p>
+        </div>
+      </div>
+
+      <!-- 8A. లైవ్ తెలుగు వార్తలు (Live Telugu News: Politics, Crime, VZM & Vizag) -->
+      <div style="background:#fff; border:2px solid #9A3412; border-radius:16px; padding:15px; margin-bottom:16px; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+          <strong style="color:#9A3412; font-size:15px;">🔴 లైవ్ తెలుగు వార్తలు (Live Breaking News)</strong>
+          <span style="font-size:11px; background:#FEE2E2; color:#991B1B; padding:2px 8px; border-radius:999px; font-weight:700;">Auto Live</span>
+        </div>
+
+        <!-- న్యూస్ కేటగిరీ బటన్లు -->
+        <div style="display:flex; gap:6px; overflow-x:auto; margin-bottom:12px; padding-bottom:4px;">
+          <button class="c-tab active" onclick="loadLiveNews('Andhra Pradesh Telugu news', this)">🔥 తాజా వార్తలు</button>
+          <button class="c-tab" onclick="loadLiveNews('Andhra Pradesh politics Telugu', this)">🏛️ రాజకీయాలు (Politics)</button>
+          <button class="c-tab" onclick="loadLiveNews('Andhra Pradesh crime news Telugu', this)">🚨 క్రైమ్ (Crime)</button>
+          <button class="c-tab" onclick="loadLiveNews('Vizianagaram Visakhapatnam Telugu news', this)">📍 VZM &amp; Vizag</button>
+        </div>
+
+        <!-- వార్తలు ఆటోమేటిక్‌గా లోడ్ అయ్యే బాక్స్ -->
+        <div id="liveNewsContainer" style="display:flex; flex-direction:column; gap:8px; font-size:13px;">
+          <p style="color:#57534E;">📡 తాజా వార్తలు లోడ్ అవుతున్నాయి...</p>
+        </div>
+      </div>
+
+      <!-- 8B. యూత్ & స్టూడెంట్స్ 3-in-1 కార్డులు (Exam Quiz + Friday Movies/OTT + Secret Love Wall) -->
+      <div class="grid">
+        
+        <!-- కార్డ్ 1: డైలీ కరెంట్ అఫైర్స్ & జాబ్ ఎగ్జామ్ క్విజ్ (RRB / SSC / AP Police) -->
+        <div class="card" style="padding:15px; border:1.5px solid #1D4ED8;">
+          <div>
+            <span style="background:#DBEAFE; color:#1E40AF; font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px;">🎯 RRB / SSC / AP Police GK</span>
+            <h3 style="font-size:17px; color:#1E3A8A; margin:6px 0;">నేటి కరెంట్ అఫైర్స్ ప్రశ్న</h3>
+            <p id="quizQuestion" style="font-size:13px; color:#1C1917; font-weight:600; margin-bottom:10px;">
+              ప్రశ్న: ఆంధ్రప్రదేశ్‌లో అత్యధిక తీరరేఖ (Coastline) కలిగిన జిల్లా ఏది?
+            </p>
+            <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:8px;">
+              <button onclick="checkQuiz(false, this)" class="btn btn-light" style="text-align:left; font-size:12px;">A) విజయనగరం</button>
+              <button onclick="checkQuiz(true, this)" class="btn btn-light" style="text-align:left; font-size:12px;">B) శ్రీకాకుళం (సరైన సమాధానం)</button>
+              <button onclick="checkQuiz(false, this)" class="btn btn-light" style="text-align:left; font-size:12px;">C) అనకాపల్లి</button>
+            </div>
+            <div id="quizFeedback" style="font-size:12px; font-weight:700;"></div>
+          </div>
+        </div>
+
+        <!-- కార్డ్ 2: ఈ వారం కొత్త సినిమాలు & OTT రిలీజ్‌లు -->
+        <div class="card" style="padding:15px; border:1.5px solid #D97706;">
+          <div>
+            <span style="background:#FEF3C7; color:#92400E; font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px;">🎬 Weekend Cinema &amp; OTT</span>
+            <h3 style="font-size:17px; color:#78350F; margin:6px 0;">ఈ వారం సినిమాలు &amp; OTT</h3>
+            <!-- 👇 కొత్త సినిమాలు & OTT వివరాలు ఇక్కడ ఎడిట్ చేసుకోండి 👇 -->
+            <p id="editableMoviesList" style="font-size:12.5px; color:#44403C; line-height:1.6;">
+              🎥 <b>థియేటర్స్ (S.Kota &amp; VZM):</b> ఈ వారం కొత్త తెలుగు యాక్షన్ &amp; ఫ్యామిలీ సినిమాలు ఆడుతున్నాయి.<br>
+              📱 <b>OTT కొత్త రిలీజ్‌లు:</b> Aha, Prime Video &amp; Hotstar లో ఈ వారం సరికొత్త తెలుగు సినిమాలు &amp; వెబ్ సిరీస్ స్ట్రీమింగ్ అవుతున్నాయి!
+            </p>
+          </div>
+          <a href="https://wa.me/918985240287?text=Hi%20Prakash,%20I%20need%20Movie%20Ticket%20or%20Bike%20Drop%20to%20Theatre:" target="_blank" class="btn btn-amber">🎟️ థియేటర్‌కి బైక్ డ్రాప్ / టికెట్ హెల్ప్</a>
+        </div>
+
+        <!-- కార్డ్ 3: మనసులో మాట / Secret Love Dedication Wall -->
+        <div class="card" style="padding:15px; border:1.5px solid #E11D48; background:linear-gradient(135deg, #FFF1F2, #FFFFFF);">
+          <div>
+            <span style="background:#FFE4E6; color:#9F1239; font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px;">💌 Secret Love &amp; Crush Wall</span>
+            <h3 style="font-size:17px; color:#881337; margin:6px 0;">మనసులో మాట (Anon Dedications)</h3>
+            <!-- 👇 యువత పంపిన ప్రేమ/స్నేహ సందేశాలు ఇక్కడ పేస్ట్ చేయండి 👇 -->
+            <p id="editableSecretLove" style="font-size:12.5px; color:#881337; font-style:italic; line-height:1.6;">
+              "S.Kota బస్ స్టాండ్ దగ్గర రోజు కనిపించే ఆ నవ్వు చూస్తే రోజంతా సంతోషంగా ఉంటుంది... నీ పేరు తెలియకపోయినా నీకు ఎప్పుడూ మంచే జరగాలని కోరుకుంటున్నా!" ❤️
+            </p>
+          </div>
+          <a href="https://wa.me/918985240287?text=Hi%20Prakash,%20Please%20post%20my%20Anonymous%20Love/Friendship%20Message%20(Without%20my%20name):" target="_blank" class="btn" style="background:#E11D48;">💌 మీ మనసులో మాట ఇక్కడ పోస్ట్ చేయండి</a>
+        </div>
+
+      </div>
+    </section>
+
+    // =========================================================================
+    // 13. లైవ్ తెలుగు న్యూస్ (Politics, Crime, VZM & Vizag) & ఎగ్జామ్ క్విజ్ కోడ్
+    // =========================================================================
+    async function loadLiveNews(query, btn) {
+      if (btn) {
+        btn.parentElement.querySelectorAll(".c-tab").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      }
+      const box = document.getElementById("liveNewsContainer");
+      if (!box) return;
+      box.innerHTML = `<p style="color:#57534E; font-size:12.5px;">📡 తాజా వార్తలు లోడ్ అవుతున్నాయి...</p>`;
+
+      const rssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=te&gl=IN&ceid=IN:te`;
+      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+      try {
+        const res = await fetch(apiUrl);
+        const data = await res.json();
+        if (data.items && data.items.length > 0) {
+          box.innerHTML = data.items.slice(0, 5).map(item => `
+            <a href="${item.link}" target="_blank" style="display:block; background:#FAF8F5; border:1px solid #E5DEC9; border-left:4px solid #9A3412; padding:9px 11px; border-radius:9px;">
+              <strong style="color:#1C1917; font-size:13px; display:block; margin-bottom:2px;">${item.title}</strong>
+              <span style="font-size:11px; color:#15803D; font-weight:600;">🕒 తాజా అప్‌డేట్ • పూర్తి వార్త చదవండి →</span>
+            </a>
+          `).join("");
+        } else {
+          box.innerHTML = `<p style="font-size:12.5px; color:#9A3412;">ప్రస్తుతం వార్తలు అందుబాటులో లేవు.</p>`;
+        }
+      } catch (e) {
+        box.innerHTML = `<p style="font-size:12.5px; color:#9A3412;">⚠️ ఇంటర్నెట్ కనెక్షన్ చెక్ చేయండి.</p>`;
+      }
+    }
+    loadLiveNews('Andhra Pradesh Telugu news');
+
+    function checkQuiz(isCorrect, btn) {
+      const fb = document.getElementById("quizFeedback");
+      if (isCorrect) {
+        btn.style.background = "#DCFCE7";
+        btn.style.borderColor = "#15803D";
+        fb.style.color = "#15803D";
+        fb.innerText = "✅ అద్భుతం! సరైన సమాధానం (శ్రీకాకుళం - 193 కి.మీ).";
+      } else {
+        btn.style.background = "#FEE2E2";
+        btn.style.borderColor = "#DC2626";
+        fb.style.color = "#DC2626";
+        fb.innerText = "❌ తప్పు సమాధానం. మళ్ళీ ప్రయత్నించండి!";
+      }
+    }
+    
+    
   </script>
 </body>
 </html>

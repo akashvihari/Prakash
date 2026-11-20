@@ -252,18 +252,32 @@
       </div>
 
       <!-- పాటల పేర్లతో Live Telugu FM Radio Player -->
-      <div class="radio-bar">
-        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span style="font-size:18px;">📻</span>
-          <select id="radioStationSelect" onchange="changeRadioStation()" class="radio-select">
-            <option value="https://stream.zeno.fm/0r0xa792kwzuv">🎶 Telugu Love &amp; Melody Hits</option>
-            <option value="https://stream.zeno.fm/f3wvbbqmdg8uv">🔥 Telugu Mass &amp; Youth Beats</option>
-            <option value="https://stream.zeno.fm/67289451340uv">🙏 Telugu Bhakti &amp; Suprabhatam</option>
-          </select>
-          <span id="radioStatusText" style="font-size:11.5px;color:#D1FAE5;">పాట వింటూ సైట్ చూడండి</span>
+            <!-- అడ్వాన్స్‌డ్ తెలుగు పాటల లైవ్ ప్లేయర్ (Background Play + Real Telugu Songs) -->
+      <div class="radio-bar" style="flex-direction:column; align-items:stretch; gap:8px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
+          <div style="display:flex; align-items:center; gap:7px; flex-wrap:wrap;">
+            <span style="font-size:18px;">🎵</span>
+            <select id="radioStationSelect" onchange="changeRadioStation()" class="radio-select">
+              <option value="https://cast1.torontocast.com:2170/stream">🎶 Telugu Superhit Cinema Songs (24/7)</option>
+              <option value="https://stream.zeno.fm/49689340340uv">❤️ Telugu Romantic &amp; Love Songs FM</option>
+              <option value="https://stream.zeno.fm/67289451340uv">🙏 Telugu Bhakti &amp; Devotional Songs</option>
+            </select>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <button id="radioToggleBtn" onclick="toggleRadio()" class="radio-btn">▶️ Play Songs</button>
+            <button onclick="toggleYtJukebox()" class="radio-btn" style="background:#EC4899; color:#fff;">🎬 Video Hits</button>
+          </div>
         </div>
-        <button id="radioToggleBtn" onclick="toggleRadio()" class="radio-btn">▶️ Play Songs</button>
-        <audio id="teluguRadioAudio" preload="none" src="https://stream.zeno.fm/0r0xa792kwzuv"></audio>
+        <div id="radioStatusText" style="font-size:11px; color:#FDE68A;">
+          💡 టిప్: Play నొక్కాక మీరు వేరే ట్యాబ్ చూసినా లేదా స్క్రీన్ లాక్ చేసినా పాటలు ఆగకుండా వస్తాయి!
+        </div>
+
+        <!-- YouTube Non-Stop Telugu Hits Jukebox (అవసరమైతే ఓపెన్ అయ్యే మినీ ప్లేయర్) -->
+        <div id="ytJukeboxBox" style="display:none; margin-top:4px; border-radius:10px; overflow:hidden; border:1px solid #FBBF24;">
+          <iframe id="ytJukeboxFrame" width="100%" height="165" src="" title="Telugu Hits Jukebox" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+
+        <audio id="teluguRadioAudio" preload="none" src="https://cast1.torontocast.com:2170/stream"></audio>
       </div>
 
       <button onclick="shareWebsiteToVillage()" class="viral-share-btn">
@@ -653,28 +667,73 @@
     // -------------------------------------------------------------------------
     // [JS 2: LIVE TELUGU FM RADIO]
     // -------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
+    // [JS 2: ADVANCED TELUGU SONGS PLAYER + BACKGROUND LOCK SCREEN PLAY]
+    // -------------------------------------------------------------------------
     let radioPlaying = false;
-    function toggleRadio() {
+
+    function setupBackgroundMedia() {
+      if ('mediaSession' in navigator) {
+        const stationName = document.getElementById("radioStationSelect").selectedOptions[0].text;
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: stationName,
+          artist: 'Mana Seva Hub • Prakash (@hipraka)',
+          album: '24/7 Non-Stop Telugu Songs'
+        });
+        navigator.mediaSession.setActionHandler('play', () => { toggleRadio(true); });
+        navigator.mediaSession.setActionHandler('pause', () => { toggleRadio(false); });
+      }
+    }
+
+    function toggleRadio(forceState) {
       const audio = document.getElementById("teluguRadioAudio");
       const btn = document.getElementById("radioToggleBtn");
       const txt = document.getElementById("radioStatusText");
-      if (!radioPlaying) {
+      const shouldPlay = (typeof forceState === "boolean") ? forceState : !radioPlaying;
+
+      if (shouldPlay) {
         audio.play().then(() => {
           radioPlaying = true;
-          btn.innerText = "⏸️ Stop Songs";
-          txt.innerText = "🎶 Live Playing...";
-        }).catch(() => { txt.innerText = "⚠️ మళ్ళీ Play నొక్కండి"; });
+          btn.innerText = "⏸️ Pause Songs";
+          btn.style.background = "#22C55E";
+          txt.innerText = "🎶 Live Telugu Songs Playing (బ్యాక్‌గ్రౌండ్‌లో కూడా ఆగదు)...";
+          setupBackgroundMedia();
+        }).catch(() => {
+          txt.innerText = "⚠️ ఈ స్టేషన్ స్లోగా ఉంది — పక్కన ఉన్న '🎬 Video Hits' నొక్కండి లేదా ఛానెల్ మార్చండి!";
+        });
       } else {
         audio.pause();
         radioPlaying = false;
         btn.innerText = "▶️ Play Songs";
-        txt.innerText = "పాట వింటూ సైట్ చూడండి";
+        btn.style.background = "#F59E0B";
+        txt.innerText = "⏸️ పాటలు ఆపబడ్డాయి.";
       }
     }
+
     function changeRadioStation() {
       const audio = document.getElementById("teluguRadioAudio");
       audio.src = document.getElementById("radioStationSelect").value;
-      if (radioPlaying) audio.play();
+      if (radioPlaying) {
+        audio.play();
+        setupBackgroundMedia();
+      }
+    }
+
+    // YouTube Non-Stop Telugu Cinema Hit Songs Jukebox
+    let ytOpen = false;
+    function toggleYtJukebox() {
+      const box = document.getElementById("ytJukeboxBox");
+      const frame = document.getElementById("ytJukeboxFrame");
+      ytOpen = !ytOpen;
+      if (ytOpen) {
+        // ఆడియో రేడియో ఆపి YouTube నాన్‌స్టాప్ తెలుగు హిట్స్ ప్లే చేస్తుంది
+        if (radioPlaying) toggleRadio(false);
+        box.style.display = "block";
+        frame.src = "https://www.youtube.com/embed/videoseries?list=PL4fGSI1pDJn5kI81J1fYWK5eZRl1zJ5kM&autoplay=1";
+      } else {
+        box.style.display = "none";
+        frame.src = "";
+      }
     }
 
     // -------------------------------------------------------------------------

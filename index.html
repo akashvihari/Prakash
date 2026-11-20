@@ -2,527 +2,623 @@
 <html lang="te">
 <head>
   <meta charset="UTF-8">
-  <!-- 1. Full-Screen Mobile Fit Fix -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mana Seva Hub • మన సేవ (బొడ్డవార • కిల్తాంపాలెం • S.Kota)</title>
+  <title>మన సేవ Hub • బొడ్డవార • కిల్తాంపాలెం • S.Kota</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    .wheel-spin { transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99); }
+    /* స్మూత్ ట్యాబ్ మరియు గ్యాలరీ స్క్రోల్ కోసం */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
-<body class="bg-gray-950 text-gray-100 w-full overflow-x-hidden min-h-screen pb-16">
+<body class="bg-gray-950 text-gray-100 w-full overflow-x-hidden min-h-screen pb-20">
 
-  <!-- TOP HEADER & PROFILE -->
-  <header class="bg-gradient-to-r from-yellow-600 via-amber-500 to-yellow-600 text-gray-950 p-4 shadow-lg sticky top-0 z-40">
+  <!-- ===================================================================== -->
+  <!-- 1. హెడర్ & ప్రొఫైల్ (బ్లింకింగ్ లేకుండా ప్రశాంతమైన ఫ్లవర్/లోగో డిజైన్) -->
+  <!-- ===================================================================== -->
+  <header class="bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 text-gray-950 p-3.5 shadow-lg sticky top-0 z-50">
     <div class="max-w-md mx-auto flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <!-- 3. Profile Photo Fix (.jpg + fallback) -->
-        <img src="https://res.cloudinary.com/demo/image/upload/sample.jpg" 
-             onerror="this.src='https://ui-avatars.com/api/?name=Prakash&background=111827&color=facc15&bold=true'" 
-             alt="Prakash" 
-             class="w-11 h-11 rounded-full object-cover object-top border-2 border-gray-900 shadow">
+        <!-- ప్రొఫైల్ ఫోటో లేదా అందమైన స్థిరమైన ఫ్లవర్ ఐకాన్ (No Blinking) -->
+        <div class="w-11 h-11 rounded-full bg-gray-900 border-2 border-white flex items-center justify-center shadow-md overflow-hidden">
+          <img src="https://res.cloudinary.com/demo/image/upload/sample.jpg" 
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" 
+               alt="Prakash" class="w-full h-full object-cover object-top">
+          <span style="display:none;" class="text-2xl">🪷</span>
+        </div>
         <div>
-          <h1 class="font-extrabold text-lg leading-tight">మన సేవ Hub 🚀</h1>
-          <p class="text-xs font-semibold text-gray-900">బొడ్డవార • కిల్తాంపాలెం • S.Kota</p>
+          <h1 class="font-extrabold text-lg leading-tight tracking-tight">మన సేవ Hub 🪷</h1>
+          <p class="text-[11px] font-bold text-gray-900">బొడ్డవార • కిల్తాంపాలెం • S.Kota</p>
         </div>
       </div>
-      <a href="tel:+918985000000" class="bg-gray-900 text-yellow-400 text-xs font-bold px-3 py-2 rounded-full shadow hover:bg-gray-800">
-        📞 Help Desk
+      <!-- డైరెక్ట్ మీడియేటర్ కాల్ బటన్ -->
+      <a href="tel:+918985000000" class="bg-gray-950 text-yellow-400 text-xs font-bold px-3.5 py-2 rounded-full shadow">
+        📞 Admin / Help
       </a>
     </div>
   </header>
 
-  <main class="max-w-md mx-auto px-3 space-y-5 mt-4">
-
-    <!-- LIVE POWER & VILLAGE TICKER -->
-    <div class="bg-gray-900 border border-yellow-500/40 rounded-xl p-3 flex items-center justify-between text-xs shadow">
-      <div class="flex items-center gap-2">
-        <span class="bg-green-500/20 text-green-400 px-2 py-0.5 rounded font-bold">💡 కరెంట్ అప్‌డేట్</span>
-        <span class="text-gray-300">ప్రస్తుతం సప్లై సాధారణంగా ఉంది.</span>
-      </div>
-      <span class="text-yellow-400 font-bold">LIVE</span>
+  <!-- క్విక్ నావిగేషన్ బార్ (పైనే అన్ని ముఖ్యమైనవి సులభంగా కనిపించడానికి) -->
+  <nav class="bg-gray-900 border-b border-gray-800 sticky top-[68px] z-40 py-2 px-2">
+    <div class="max-w-md mx-auto flex gap-2 overflow-x-auto no-scrollbar text-xs font-bold">
+      <a href="#transport-sec" class="shrink-0 bg-yellow-500 text-black px-3 py-1.5 rounded-full">🏍️ రైడ్ & డెలివరీ</a>
+      <a href="#olx-sec" class="shrink-0 bg-gray-800 text-yellow-300 px-3 py-1.5 rounded-full border border-gray-700">🛒 కొనుగోలు/అమ్మకం</a>
+      <a href="#veg-sec" class="shrink-0 bg-gray-800 text-green-400 px-3 py-1.5 rounded-full border border-gray-700">🥬 కూరగాయలు</a>
+      <a href="#jobs-sec" class="shrink-0 bg-gray-800 text-blue-300 px-3 py-1.5 rounded-full border border-gray-700">💼 ఉద్యోగాలు</a>
+      <a href="#marriage-sec" class="shrink-0 bg-gray-800 text-pink-300 px-3 py-1.5 rounded-full border border-gray-700">💍 వివాహ వేదిక</a>
+      <a href="#tourism-sec" class="shrink-0 bg-gray-800 text-teal-300 px-3 py-1.5 rounded-full border border-gray-700">🏞️ టూరిజం</a>
     </div>
+  </nav>
 
-    <!-- ========================================== -->
-    <!-- FEATURE 1: ₹5/KM BIKE RIDER & MEDIATOR HUB -->
-    <!-- ========================================== -->
-    <section class="bg-gray-900 rounded-2xl p-4 border border-gray-800 shadow-xl">
+  <main class="max-w-md mx-auto px-3 space-y-6 mt-4">
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 1: TRANSPORT (BIKE, AUTO, CAR & SPECIAL STUFF DELIVERY)       -->
+    <!-- ఇక్కడ నీ కమీషన్ రేట్లు కింద JavaScript లో సులభంగా మార్చుకోవచ్చు        -->
+    <!-- ===================================================================== -->
+    <section id="transport-sec" class="bg-gray-900 rounded-2xl p-4 border border-yellow-500/40 shadow-xl">
       <div class="flex justify-between items-center mb-3">
-        <h2 class="text-base font-extrabold text-yellow-400 flex items-center gap-1.5">
-          🏍️ ₹5/KM బైక్ రైడ్ & డ్రాప్ సేవ
-        </h2>
-        <span class="bg-yellow-500/20 text-yellow-300 text-[11px] font-bold px-2.5 py-0.5 rounded-full">
-          తక్కువ ధర • వేగవంతం
-        </span>
+        <h2 class="text-base font-extrabold text-yellow-400">🏍️ 🛺 🚗 ట్రాన్స్‌పోర్ట్ & డెలివరీ</h2>
+        <span class="bg-green-500/20 text-green-400 text-[10px] font-bold px-2.5 py-0.5 rounded-full">Mediator Verified</span>
       </div>
 
-      <!-- Fare Calculator -->
-      <div class="bg-gray-800/90 p-3.5 rounded-xl border border-gray-700 space-y-3">
+      <!-- వాహనం రకం ఎంచుకోవడం -->
+      <div class="grid grid-cols-4 gap-1.5 mb-3 text-center text-xs font-bold">
+        <button onclick="selectVehicle('bike', 5)" id="btn-bike" class="v-btn bg-yellow-500 text-black py-2 rounded-xl">🏍️ Bike<br><span class="text-[10px]">₹5/km</span></button>
+        <button onclick="selectVehicle('auto', 12)" id="btn-auto" class="v-btn bg-gray-800 text-gray-300 py-2 rounded-xl border border-gray-700">🛺 Auto<br><span class="text-[10px]">₹12/km</span></button>
+        <button onclick="selectVehicle('car', 18)" id="btn-car" class="v-btn bg-gray-800 text-gray-300 py-2 rounded-xl border border-gray-700">🚗 Car<br><span class="text-[10px]">₹18/km</span></button>
+        <button onclick="selectVehicle('stuff', 10)" id="btn-stuff" class="v-btn bg-gray-800 text-amber-300 py-2 rounded-xl border border-gray-700">📦 Stuff<br><span class="text-[10px]">Parcel/Spl</span></button>
+      </div>
+
+      <!-- బుకింగ్ కాలిక్యులేటర్ -->
+      <div class="bg-gray-800 p-3 rounded-xl border border-gray-700 space-y-2.5">
         <div class="grid grid-cols-2 gap-2">
-          <div>
-            <label class="text-[11px] text-gray-400 block mb-1">ఎక్కడి నుండి (From)</label>
-            <input type="text" id="rideFrom" placeholder="ఉదా: బొడ్డవార" class="w-full p-2 text-xs bg-gray-900 border border-gray-600 rounded-lg text-white focus:border-yellow-400 outline-none">
-          </div>
-          <div>
-            <label class="text-[11px] text-gray-400 block mb-1">ఎక్కడికి (To)</label>
-            <input type="text" id="rideTo" placeholder="ఉదా: S.Kota బస్టాండ్" class="w-full p-2 text-xs bg-gray-900 border border-gray-600 rounded-lg text-white focus:border-yellow-400 outline-none">
-          </div>
+          <input type="text" id="tFrom" placeholder="ఎక్కడి నుండి (From)" class="w-full p-2 text-xs bg-gray-900 border border-gray-600 rounded-lg text-white outline-none">
+          <input type="text" id="tTo" placeholder="ఎక్కడికి (To)" class="w-full p-2 text-xs bg-gray-900 border border-gray-600 rounded-lg text-white outline-none">
         </div>
 
-        <div class="flex items-center justify-between gap-3">
+        <!-- Stuff / Special Delivery కోసం అదనపు నోట్ బాక్స్ -->
+        <div id="stuffNoteBox" class="hidden">
+          <input type="text" id="stuffDetails" placeholder="ఏ వస్తువు తేవాలి? (ఉదా: కిరాణా / పార్టీ స్టఫ్ / పార్శిల్)" class="w-full p-2 text-xs bg-gray-900 border border-amber-500/50 rounded-lg text-amber-200 outline-none">
+        </div>
+
+        <div class="flex items-center justify-between gap-2">
           <div class="w-1/2">
-            <label class="text-[11px] text-gray-400 block mb-1">దూరం (కిలోమీటర్లు - KM)</label>
-            <input type="number" id="rideKm" min="1" max="100" value="4" oninput="calculateBikeFare()" 
-              class="w-full p-2 text-sm font-bold bg-gray-900 border border-yellow-500/50 rounded-lg text-yellow-400 outline-none">
+            <label class="text-[10px] text-gray-400 block mb-0.5">దూరం (కిలోమీటర్లు - KM)</label>
+            <input type="number" id="tKm" value="5" min="1" oninput="calcTransport()" class="w-full p-2 text-sm font-bold bg-gray-900 border border-yellow-500/50 rounded-lg text-yellow-400 outline-none">
           </div>
           <div class="w-1/2 bg-gray-900 p-2 rounded-lg border border-gray-700 text-center">
-            <span class="text-[10px] text-gray-400 block">మొత్తం ఛార్జీ (₹5/km)</span>
-            <span id="totalFareDisplay" class="text-xl font-extrabold text-green-400">₹20</span>
+            <span class="text-[10px] text-gray-400 block">మొత్తం ఛార్జీ (కమీషన్‌తో కలిపి)</span>
+            <span id="tTotalFare" class="text-lg font-extrabold text-green-400">₹30</span>
+            <span id="tCommInfo" class="text-[9px] text-gray-400 block">(రైడర్ ₹25 + సర్వీస్ ₹5)</span>
           </div>
         </div>
 
-        <!-- Book via Mediator (Prakash) Button -->
-        <button onclick="bookViaMediator()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold text-xs py-2.5 rounded-xl shadow flex items-center justify-center gap-2 transition">
-          <span>📲 రైడ్ బుక్ చెయ్ (WhatsApp Mediator)</span>
+        <!-- మీడియేటర్ ద్వారా బుకింగ్ (కమీషన్ సేఫ్టీ కోసం ముందు నీకే మెసేజ్ వస్తుంది) -->
+        <button onclick="bookTransport()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold text-xs py-2.5 rounded-xl shadow">
+          📲 రైడ్ బుక్ చెయ్ (Instant Connect)
         </button>
       </div>
 
-      <!-- Nearby Registered Riders List -->
-      <div class="mt-4">
+      <!-- అందుబాటులో ఉన్న రైడర్లు (నంబర్ హైడ్ చేసి ఉంటుంది - మీడియేటర్ ద్వారా కనెక్ట్ అవుతారు) -->
+      <div class="mt-3 pt-3 border-t border-gray-800">
         <div class="flex justify-between items-center mb-2">
-          <h3 class="text-xs font-bold text-gray-300">📍 దగ్గరలో ఉన్న రైడర్లు (Direct Call):</h3>
-          <button onclick="toggleRiderForm()" class="text-[11px] bg-yellow-500/20 text-yellow-300 hover:bg-yellow-500/30 px-2.5 py-1 rounded-lg font-semibold">
+          <span class="text-xs font-bold text-gray-300">🟢 ఇప్పుడు అందుబాటులో ఉన్న రైడర్లు:</span>
+          <button onclick="toggleBox('addRiderBox')" class="text-[11px] bg-yellow-500/20 text-yellow-300 px-2.5 py-1 rounded-lg font-bold">
             + రైడర్‌గా చేరండి
           </button>
         </div>
 
-        <!-- Add New Rider Form (Hidden by default) -->
-        <div id="addRiderForm" style="display: none;" class="bg-gray-800 p-3 rounded-xl border border-yellow-500/40 mb-3 space-y-2">
-          <p class="text-[11px] text-yellow-300 font-semibold">మీ బైక్ వివరాలు యాడ్ చేయండి (కస్టమర్లు నేరుగా కాల్ చేస్తారు):</p>
-          <input type="text" id="newRiderName" placeholder="మీ పేరు (ఉదా: రమేష్)" class="w-full p-2 text-xs bg-gray-900 border border-gray-600 rounded-lg text-white">
+        <!-- కొత్త రైడర్ రిజిస్ట్రేషన్ ఫామ్ -->
+        <div id="addRiderBox" style="display:none;" class="bg-gray-800 p-3 rounded-xl border border-yellow-500/40 mb-2.5 space-y-2">
+          <p class="text-[11px] text-yellow-300">మీ వాహనం వివరాలు ఇవ్వండి (కస్టమర్ బుక్ చేయగానే మీకు కాల్ వస్తుంది):</p>
+          <input type="text" id="rName" placeholder="మీ పేరు" class="w-full p-2 text-xs bg-gray-900 border border-gray-600 rounded-lg text-white">
           <div class="grid grid-cols-2 gap-2">
-            <input type="text" id="newRiderLoc" placeholder="మీ ఊరు (ఉదా: కిల్తాంపాలెం)" class="w-full p-2 text-xs bg-gray-900 border border-gray-600 rounded-lg text-white">
-            <input type="tel" id="newRiderPhone" maxlength="10" placeholder="మొబైల్ నంబర్" class="w-full p-2 text-xs bg-gray-900 border border-gray-600 rounded-lg text-white">
+            <select id="rType" class="p-2 text-xs bg-gray-900 border border-gray-600 rounded-lg text-white">
+              <option value="Bike">🏍️ Bike</option>
+              <option value="Auto">🛺 Auto</option>
+              <option value="Car">🚗 Car</option>
+            </select>
+            <input type="text" id="rLoc" placeholder="మీ ఊరు (ఉదా: బొడ్డవార)" class="p-2 text-xs bg-gray-900 border border-gray-600 rounded-lg text-white">
           </div>
-          <button onclick="registerRider()" class="w-full bg-yellow-500 text-black font-bold text-xs py-2 rounded-lg">
-            ✅ లిస్ట్‌లో నా నంబర్ యాడ్ చెయ్
-          </button>
+          <input type="tel" id="rPhone" maxlength="10" placeholder="మీ మొబైల్ నంబర్ (గోప్యంగా ఉంటుంది)" class="w-full p-2 text-xs bg-gray-900 border border-gray-600 rounded-lg text-white">
+          <button onclick="addNewRider()" class="w-full bg-yellow-500 text-black font-bold text-xs py-2 rounded-lg">✅ లిస్ట్‌లో యాడ్ చెయ్</button>
         </div>
 
-        <!-- Riders Container -->
-        <div id="ridersList" class="space-y-2">
-          <!-- Default + User Added Riders appear here -->
-        </div>
+        <div id="activeRidersList" class="space-y-2"></div>
       </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- FEATURE 2: DAILY LUCKY SPIN WHEEL          -->
-    <!-- ========================================== -->
-    <section class="bg-gradient-to-br from-indigo-950 via-gray-900 to-purple-950 rounded-2xl p-4 border border-purple-500/30 shadow-xl text-center">
-      <h2 class="text-base font-extrabold text-purple-300 mb-1">🎁 డైలీ లక్కీ స్పిన్ (Lucky Offer)</h2>
-      <p class="text-[11px] text-gray-300 mb-3">రోజుకోసారి తిప్పండి — బైక్ రైడ్ లేదా డెలివరీపై డిస్కౌంట్ గెలవండి!</p>
-      
-      <div class="relative w-32 h-32 mx-auto my-2 flex items-center justify-center">
-        <div id="spinWheel" class="wheel-spin w-full h-full rounded-full border-4 border-yellow-400 bg-gradient-to-tr from-yellow-500 via-pink-500 to-indigo-500 flex items-center justify-center shadow-lg">
-          <span class="text-2xl">🎡</span>
-        </div>
-      </div>
-
-      <button id="spinBtn" onclick="spinLuckyWheel()" class="mt-2 bg-yellow-400 hover:bg-yellow-300 text-black font-extrabold text-xs px-5 py-2 rounded-full shadow">
-        🎯 స్పిన్ తిప్పండి (Free)
-      </button>
-      <p id="spinResult" class="text-xs font-bold text-green-400 mt-2 hidden"></p>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- FEATURE 3: AUTO & SHARE AUTO FARE CHART    -->
-    <!-- ========================================== -->
-    <section class="bg-gray-900 rounded-2xl p-4 border border-gray-800 shadow-xl">
-      <h2 class="text-sm font-extrabold text-yellow-400 mb-2.5">🛺 లోకల్ షేర్ ఆటో రేట్ల పట్టిక</h2>
-      <div class="overflow-x-auto">
-        <table class="w-full text-xs text-left text-gray-300">
-          <thead class="bg-gray-800 text-yellow-300 text-[11px]">
-            <tr>
-              <th class="p-2 rounded-tl-lg">రూట్ (Route)</th>
-              <th class="p-2">షేర్ ఆటో</th>
-              <th class="p-2 rounded-tr-lg">బైక్ డ్రాప్ (₹5/km)</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-800">
-            <tr>
-              <td class="p-2">బొడ్డవార ↔ S.Kota</td>
-              <td class="p-2">₹15 - ₹20</td>
-              <td class="p-2 text-green-400 font-bold">₹25 (5 km)</td>
-            </tr>
-            <tr>
-              <td class="p-2">కిల్తాంపాలెం ↔ S.Kota</td>
-              <td class="p-2">₹20 - ₹25</td>
-              <td class="p-2 text-green-400 font-bold">₹30 (6 km)</td>
-            </tr>
-            <tr>
-              <td class="p-2">తాటిపూడి ↔ S.Kota</td>
-              <td class="p-2">₹25 - ₹30</td>
-              <td class="p-2 text-green-400 font-bold">₹40 (8 km)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- FEATURE 4: YOUTUBE MUSIC BOX (FIXED TOGGLE)-->
-    <!-- ========================================== -->
-    <section class="bg-gray-900 rounded-2xl p-4 border border-gray-800 shadow-xl">
-      <div class="flex justify-between items-center">
-        <div>
-          <h2 class="text-sm font-extrabold text-red-400">🎵 తెలుగు హిట్ సాంగ్స్ & భక్తి గీతాలు</h2>
-          <p class="text-[11px] text-gray-400">ప్రయాణంలో వినడానికి ప్లేయర్ ఓపెన్ చేయండి</p>
-        </div>
-        <button onclick="toggleYouTubeBox()" id="ytToggleBtn" class="bg-red-600 hover:bg-red-500 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow">
-          ▶️ Open Player
+    <!-- ===================================================================== -->
+    <!-- SECTION 2: VILLAGE OLX (BUY & SELL + REAL ESTATE LANDS)               -->
+    <!-- వస్తువులు & భూముల అమ్మకానికి 5% కమీషన్ లాజిక్                        -->
+    <!-- ===================================================================== -->
+    <section id="olx-sec" class="bg-gray-900 rounded-2xl p-4 border border-gray-800 shadow-xl">
+      <div class="flex justify-between items-center mb-2">
+        <h2 class="text-base font-extrabold text-yellow-400">🛒 కొనుగోలు & అమ్మకం (OLX + Lands)</h2>
+        <button onclick="toggleBox('sellFormBox')" class="bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-lg">
+          + అమ్మకానికి పెట్టు
         </button>
       </div>
+      <p class="text-[11px] text-gray-400 mb-3">బైకులు, ఫోన్లు, పాత సామాన్లు లేదా స్థలాలు/భూములు అమ్ముకోండి (అమ్ముడుపోయాక 5% సర్వీస్ కమీషన్).</p>
 
-      <!-- Controlled strictly via JS style.display -->
-      <div id="ytPlayerContainer" style="display: none;" class="mt-3 pt-3 border-t border-gray-800 space-y-2.5">
-        <div class="aspect-video w-full rounded-xl overflow-hidden bg-black border border-gray-700">
-          <iframe class="w-full h-full" src="https://www.youtube.com/embed/videoseries?list=PL4fGSI1pDJn5kI81J1fYWK5eZRl1zJ5kM" 
-            title="Telugu Hits" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <!-- అమ్మకం పోస్ట్ ఫామ్ -->
+      <div id="sellFormBox" style="display:none;" class="bg-gray-800 p-3 rounded-xl border border-yellow-500/40 mb-3 space-y-2">
+        <input type="text" id="itemTitle" placeholder="వస్తువు లేదా స్థలం పేరు (ఉదా: Splendor Bike / 5 సెంట్ల స్థలం)" class="w-full p-2 text-xs bg-gray-900 border border-gray-600 rounded-lg text-white">
+        <div class="grid grid-cols-2 gap-2">
+          <input type="number" id="itemPrice" placeholder="ధర (₹ రూపాయల్లో)" class="w-full p-2 text-xs bg-gray-900 border border-gray-600 rounded-lg text-white">
+          <input type="text" id="itemLoc" placeholder="ఊరు (ఉదా: కిల్తాంపాలెం)" class="w-full p-2 text-xs bg-gray-900 border border-gray-600 rounded-lg text-white">
         </div>
-        <a href="https://www.youtube.com/results?search_query=telugu+latest+hit+songs" target="_blank" 
-           class="block text-center bg-gray-800 hover:bg-gray-700 text-yellow-300 text-xs font-bold py-2 rounded-lg border border-gray-700">
-          📺 నేరుగా YouTube యాప్‌లో ఓపెన్ చేయండి ↗
-        </a>
+        <label class="block text-xs bg-gray-700 text-yellow-300 p-2 rounded-lg text-center cursor-pointer">
+          📷 ఫోటో సెలెక్ట్ చేయండి
+          <input type="file" id="itemPhoto" accept="image/*" class="hidden" onchange="compressImage(event, 'itemPreview')">
+        </label>
+        <img id="itemPreview" class="hidden w-full h-32 object-cover rounded-lg border border-gray-600">
+        <button onclick="postOlxItem()" class="w-full bg-green-600 text-white font-bold text-xs py-2 rounded-lg">🚀 యాడ్ పోస్ట్ చెయ్</button>
+      </div>
+
+      <!-- అమ్మకానికి ఉన్న వస్తువుల లిస్ట్ -->
+      <div id="olxItemsList" class="grid grid-cols-2 gap-2.5"></div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 3: VEGETABLES & BUSINESS MARKET (DIRECT MARGIN MODEL)         -->
+    <!-- రైతుల నుండి కొని హోటళ్లు/ఇళ్లకు సప్లై చేసే బిజినెస్ సెక్షన్             -->
+    <!-- ===================================================================== -->
+    <section id="veg-sec" class="bg-gray-900 rounded-2xl p-4 border border-gray-800 shadow-xl">
+      <div class="flex justify-between items-center mb-2">
+        <h2 class="text-base font-extrabold text-green-400">🥬 తాజా కూరగాయలు & హోల్‌సేల్</h2>
+        <span class="text-[10px] bg-green-900 text-green-300 px-2 py-0.5 rounded font-bold">ఈరోజు మార్కెట్ రేట్లు</span>
+      </div>
+      <p class="text-[11px] text-gray-400 mb-3">ఇంటికి లేదా హోటళ్లకు ఆర్డర్ చేస్తే నేరుగా డోర్ డెలివరీ చేస్తాము.</p>
+
+      <div class="space-y-2 text-xs">
+        <div class="flex justify-between items-center bg-gray-800 p-2.5 rounded-xl">
+          <span>🍅 టమాటా (1 Kg) — <b class="text-green-400">₹25</b></span>
+          <button onclick="orderVeg('టమాటా (1kg - ₹25)')" class="bg-green-600 text-white px-3 py-1 rounded-lg font-bold">Order</button>
+        </div>
+        <div class="flex justify-between items-center bg-gray-800 p-2.5 rounded-xl">
+          <span>🧅 ఉల్లిపాయలు (1 Kg) — <b class="text-green-400">₹35</b></span>
+          <button onclick="orderVeg('ఉల్లిపాయలు (1kg - ₹35)')" class="bg-green-600 text-white px-3 py-1 rounded-lg font-bold">Order</button>
+        </div>
+        <div class="flex justify-between items-center bg-gray-800 p-2.5 rounded-xl">
+          <span>🥔 బంగాళాదుంప (1 Kg) — <b class="text-green-400">₹30</b></span>
+          <button onclick="orderVeg('బంగాళాదుంప (1kg - ₹30)')" class="bg-green-600 text-white px-3 py-1 rounded-lg font-bold">Order</button>
+        </div>
       </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- FEATURE 5: SECRET WHISPER WALL (WITH PHOTO)-->
-    <!-- ========================================== -->
-    <section class="bg-gray-900 text-white rounded-2xl p-4 shadow-xl border border-gray-800">
+    <!-- ===================================================================== -->
+    <!-- SECTION 4: JOBS & YOUTH HOOK (FREE + PAID SERVICE)                    -->
+    <!-- యువత రోజూ యాప్ చూసేలా ఫ్రీ జాబ్స్ + పెయిడ్ సర్వీసులు                 -->
+    <!-- ===================================================================== -->
+    <section id="jobs-sec" class="bg-gray-900 rounded-2xl p-4 border border-gray-800 shadow-xl">
+      <h2 class="text-base font-extrabold text-blue-400 mb-2">💼 లోకల్ & ప్రభుత్వ ఉద్యోగాల సమాచారం</h2>
+      
+      <div class="space-y-2.5 text-xs">
+        <!-- ఫ్రీ సర్వీస్ (Traffic Hook) -->
+        <div class="bg-gray-800 p-3 rounded-xl border-l-4 border-green-500">
+          <div class="flex justify-between">
+            <span class="font-bold text-white">సైట్ వర్క్ & డెలివరీ బాయ్స్ (S.Kota / Kiltampalem)</span>
+            <span class="bg-green-600/30 text-green-300 px-2 py-0.5 rounded text-[10px] font-bold">FREE</span>
+          </div>
+          <p class="text-gray-400 mt-1">రోజుకు ₹500 - ₹700 వేతనం. ఆసక్తి ఉన్నవారు సంప్రదించండి.</p>
+          <button onclick="inquireService('Free Local Job Inquiry')" class="mt-2 text-yellow-400 font-bold underline">👉 వివరాలు తెలుసుకోండి</button>
+        </div>
+
+        <!-- పెయిడ్ సర్వీస్ (Income Hook) -->
+        <div class="bg-gray-800 p-3 rounded-xl border-l-4 border-yellow-500">
+          <div class="flex justify-between">
+            <span class="font-bold text-white">ప్రైవేట్ కంపెనీ రిఫరల్ & Resume బిల్డింగ్</span>
+            <span class="bg-yellow-500/20 text-yellow-300 px-2 py-0.5 rounded text-[10px] font-bold">₹49 Service</span>
+          </div>
+          <p class="text-gray-400 mt-1">వైజాగ్ / విజయనగరం కంపెనీల్లో జాబ్ అప్లికేషన్ & ప్రొఫెషనల్ రెజ్యూమ్ తయారీ.</p>
+          <button onclick="inquireService('Paid Resume & Job Referral (₹49)')" class="mt-2 bg-yellow-500 text-black px-3 py-1 rounded-lg font-bold">📲 అప్లై చేయండి</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 5: GENUINE MARRIAGE BUREAU (వివాహ వేదిక)                     -->
+    <!-- నకిలీ ప్రొఫైల్స్ లేకుండా అడ్మిన్ వెరిఫికేషన్ మోడల్                     -->
+    <!-- ===================================================================== -->
+    <section id="marriage-sec" class="bg-gray-900 rounded-2xl p-4 border border-pink-500/30 shadow-xl">
       <div class="flex justify-between items-center mb-2">
-        <h2 class="text-base font-extrabold flex items-center gap-1.5 text-yellow-400">
-          🤫 Secret Whisper Wall
-        </h2>
-        <!-- Unread Counter Badge -->
-        <span id="whisperBadge" class="hidden bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse shadow">
-          🔔 0 New
-        </span>
+        <h2 class="text-base font-extrabold text-pink-400">💍 మన ఊరి వివాహ వేదిక (Genuine)</h2>
+        <span class="text-[10px] bg-pink-500/20 text-pink-300 px-2 py-0.5 rounded font-bold">100% Verified</span>
+      </div>
+      <p class="text-[11px] text-gray-400 mb-3">కుటుంబ వివరాలు మరియు ఆధార్ వెరిఫికేషన్ తర్వాతే ప్రొఫైల్ యాడ్ చేస్తాము. పూర్తి గోప్యత ఉంటుంది.</p>
+      
+      <div class="bg-gray-800 p-3 rounded-xl space-y-2 text-xs">
+        <p class="text-gray-200">✅ <b>ప్రొఫైల్ ID #101:</b> వరుడు (28 సం||), B.Com, ప్రైవేట్ ఉద్యోగం, S.Kota మండలం.</p>
+        <p class="text-gray-200">✅ <b>ప్రొఫైల్ ID #102:</b> వధువు (24 సం||), డిగ్రీ, విజయనగరం జిల్లా.</p>
+        <button onclick="inquireService('Marriage Profile Registration / Inquiry')" class="w-full mt-2 bg-pink-600 hover:bg-pink-500 text-white font-bold py-2 rounded-xl">
+          🤝 కొత్త సంబంధం నమోదు / వివరాలకు సంప్రదించండి
+        </button>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 6: TOURISM GALLERY (5+ REAL PHOTOS PER PLACE)                 -->
+    <!-- ఇక్కడ నువ్వు తీసిన రియల్ ఫోటోల లింక్స్ ఎన్ని అయినా యాడ్ చేసుకోవచ్చు      -->
+    <!-- ===================================================================== -->
+    <section id="tourism-sec" class="bg-gray-900 rounded-2xl p-4 border border-gray-800 shadow-xl">
+      <h2 class="text-base font-extrabold text-teal-400 mb-1">🏞️ సండే టూరిజం & ప్యాకేజీలు</h2>
+      <p class="text-[11px] text-gray-400 mb-3">ప్రదేశం ఎంచుకుని 5+ రియల్ ఫోటోలు చూడండి & బైక్/కార్ ప్యాకేజీ బుక్ చేయండి.</p>
+
+      <!-- ప్లేస్ సెలెక్టర్ బటన్లు -->
+      <div class="flex gap-2 overflow-x-auto no-scrollbar mb-3 text-xs font-bold">
+        <button onclick="loadTourPhotos('thatipudi')" class="bg-teal-600 text-white px-3 py-1.5 rounded-lg shrink-0">తాటిపూడి డ్యామ్</button>
+        <button onclick="loadTourPhotos('araku')" class="bg-gray-800 text-teal-300 px-3 py-1.5 rounded-lg border border-gray-700 shrink-0">అరకు లోయ</button>
+        <button onclick="loadTourPhotos('vanjangi')" class="bg-gray-800 text-teal-300 px-3 py-1.5 rounded-lg border border-gray-700 shrink-0">వంజంగి మేఘాలు</button>
       </div>
 
-      <p class="text-[11px] text-gray-400 mb-3">
-        మీ మనసులోని మాట లేదా ఫోటోను సీక్రెట్‌గా షేర్ చేయండి (24 గంటల తర్వాత ఆటోమేటిక్‌గా డిలీట్ అవుతుంది).
-      </p>
+      <!-- 5 ఫోటోల హారిజాంటల్ స్క్రోల్ గ్యాలరీ -->
+      <div id="tourGallery" class="flex gap-2.5 overflow-x-auto pb-2"></div>
 
-      <!-- Post Form -->
-      <div class="space-y-2.5 bg-gray-800 p-3 rounded-xl border border-gray-700">
-        <textarea id="whisperInput" rows="2" placeholder="ఇక్కడ మీ సీక్రెట్ మెసేజ్ రాయండి..." 
-          class="w-full p-2 text-xs bg-gray-900 text-white rounded-lg border border-gray-600 focus:border-yellow-400 outline-none"></textarea>
-        
-        <div class="flex items-center justify-between">
-          <label class="cursor-pointer flex items-center gap-1 text-xs bg-gray-700 hover:bg-gray-600 text-yellow-300 px-3 py-1.5 rounded-lg">
-            <span>📷 ఫోటో యాడ్</span>
-            <input type="file" id="whisperPhotoInput" accept="image/*" class="hidden" onchange="previewWhisperPhoto(event)">
-          </label>
-          <button onclick="postWhisper()" class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold text-xs px-4 py-1.5 rounded-lg shadow">
-            🚀 పోస్ట్ చెయ్
-          </button>
+      <button onclick="inquireService('Sunday Tourism Package Booking')" class="w-full mt-2 bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs py-2 rounded-xl">
+        🚙 గైడ్ & టూరిజం ప్యాకేజీ బుక్ చేయండి
+      </button>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 7: VOLUNTARY NIGHT EMERGENCY RIDERS (స్వచ్ఛంద సేవ)           -->
+    <!-- ===================================================================== -->
+    <section class="bg-red-950/40 rounded-2xl p-4 border border-red-500/40 shadow-xl">
+      <h2 class="text-sm font-extrabold text-red-400 mb-1">🆘 రాత్రి వేళ అత్యవసర సహాయం (Night Help)</h2>
+      <p class="text-[11px] text-gray-300 mb-2.5">రాత్రి సమయంలో ఆసుపత్రి లేదా అత్యవసర ప్రయాణాలకు స్వచ్ఛందంగా సహాయం చేసే మిత్రులు:</p>
+      <div class="bg-gray-900/90 p-2.5 rounded-xl flex justify-between items-center text-xs">
+        <div>
+          <p class="font-bold text-white">ప్రకాష్ & టీమ్ (బొడ్డవార - కిల్తాంపాలెం)</p>
+          <p class="text-[10px] text-gray-400">అందుబాటులో: రాత్రి 10:00 నుండి ఉదయం 5:00 వరకు</p>
         </div>
+        <a href="tel:+918985000000" class="bg-red-600 text-white font-bold px-3 py-1.5 rounded-lg">📞 SOS Call</a>
+      </div>
+    </section>
 
-        <div id="photoPreviewBox" class="hidden relative mt-2">
-          <img id="photoPreviewImg" src="" class="w-full h-32 object-cover rounded-lg border border-gray-600">
-          <button onclick="clearPhoto()" class="absolute top-1 right-1 bg-red-600 text-white text-xs px-2 py-0.5 rounded-full">✕</button>
+    <!-- ===================================================================== -->
+    <!-- SECTION 8: EDUCATION + TELUGU SONGS + SECRET WHISPER WALL             -->
+    <!-- ===================================================================== -->
+    <section class="bg-gray-900 rounded-2xl p-4 border border-gray-800 shadow-xl space-y-4">
+      <!-- ఎడ్యుకేషన్ కార్నర్ -->
+      <div>
+        <h2 class="text-sm font-extrabold text-indigo-400 mb-1">📚 ఎడ్యుకేషన్ & ఎగ్జామ్ గైడ్</h2>
+        <p class="text-[11px] text-gray-400">10th, ఇంటర్, డిగ్రీ, ITI ఎలక్ట్రీషియన్ నోట్స్ & RRB/SSC అర్థమెటిక్ షార్ట్‌కట్స్ కోసం సంప్రదించండి.</p>
+      </div>
+
+      <!-- తెలుగు పాటల ప్లేయర్ (Fixed Open/Close) -->
+      <div class="pt-3 border-t border-gray-800">
+        <div class="flex justify-between items-center">
+          <span class="text-xs font-bold text-red-400">🎵 తెలుగు హిట్ సాంగ్స్ & భక్తి గీతాలు</span>
+          <button onclick="toggleYouTube()" id="ytBtn" class="bg-red-600 text-white text-[11px] font-bold px-3 py-1.5 rounded-lg">▶️ Open</button>
+        </div>
+        <div id="ytBox" style="display:none;" class="mt-2.5 space-y-2">
+          <div class="aspect-video w-full rounded-xl overflow-hidden bg-black">
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/videoseries?list=PL4fGSI1pDJn5kI81J1fYWK5eZRl1zJ5kM" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <a href="https://www.youtube.com/results?search_query=telugu+songs" target="_blank" class="block text-center bg-gray-800 text-yellow-300 text-xs py-1.5 rounded-lg">YouTube లో ఓపెన్ చేయండి ↗</a>
         </div>
       </div>
 
-      <!-- Lock / Unlock Controls -->
-      <div class="mt-3 pt-3 border-t border-gray-800">
-        <div id="lockedBox" class="text-center py-2">
-          <p class="text-[11px] text-gray-300 mb-2">సీక్రెట్ మెసేజ్‌లు & ఫోటోలు చూడటానికి PIN ఎంటర్ చేయండి</p>
-          <div class="flex justify-center gap-2">
-            <input type="password" id="pinInput" maxlength="4" placeholder="PIN (1430)" 
-              class="w-28 text-center tracking-widest p-1.5 text-sm bg-gray-800 border border-gray-600 rounded-lg text-white outline-none">
-            <button onclick="unlockWhispers()" class="bg-green-600 hover:bg-green-500 text-white font-bold text-xs px-4 py-1.5 rounded-lg">
-              🔓 Unlock
-            </button>
+      <!-- సీక్రెట్ విస్పర్ వాల్ (Photo + Unread Badge + 24hr Auto-Delete) -->
+      <div class="pt-3 border-t border-gray-800">
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="text-sm font-extrabold text-yellow-400">🤫 Secret Whisper Wall</h3>
+          <span id="whisperBadge" class="hidden bg-red-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full">🔔 0 New</span>
+        </div>
+        <div class="space-y-2 bg-gray-800 p-2.5 rounded-xl">
+          <textarea id="wText" rows="2" placeholder="సీక్రెట్ మెసేజ్ రాయండి (24 గం|| తర్వాత డిలీట్ అవుతుంది)..." class="w-full p-2 text-xs bg-gray-900 rounded-lg text-white outline-none"></textarea>
+          <div class="flex justify-between items-center">
+            <label class="text-[11px] bg-gray-700 text-yellow-300 px-2.5 py-1.5 rounded-lg cursor-pointer">
+              📷 ఫోటో
+              <input type="file" id="wFile" accept="image/*" class="hidden" onchange="compressImage(event, 'wPreview')">
+            </label>
+            <button onclick="saveWhisper()" class="bg-yellow-500 text-black font-bold text-xs px-3.5 py-1.5 rounded-lg">🚀 పోస్ట్</button>
           </div>
+          <img id="wPreview" class="hidden w-full h-28 object-cover rounded-lg">
         </div>
 
-        <div id="unlockedBox" class="hidden">
-          <div class="flex justify-between items-center mb-2">
-            <span class="text-[11px] text-green-400 font-semibold">✅ అన్‌లాక్ అయింది (చూసినవి మార్క్ అయ్యాయి)</span>
-            <button onclick="lockWhispers()" class="bg-red-600/80 hover:bg-red-600 text-white text-xs px-2.5 py-1 rounded-lg">
-              🔒 Lock Again
-            </button>
+        <!-- PIN అన్‌లాక్ -->
+        <div id="wLocked" class="text-center mt-2.5">
+          <input type="password" id="wPin" maxlength="4" placeholder="PIN (1430)" class="w-24 text-center p-1 text-xs bg-gray-800 border border-gray-600 rounded text-white">
+          <button onclick="unlockWhisper()" class="bg-green-600 text-white text-xs font-bold px-3 py-1 rounded">🔓 Unlock</button>
+        </div>
+        <div id="wUnlocked" class="hidden mt-2.5 space-y-2">
+          <div class="flex justify-between text-[11px]">
+            <span class="text-green-400">✅ చూసినవి మార్క్ అయ్యాయి</span>
+            <button onclick="lockWhisper()" class="text-red-400 font-bold">🔒 Lock</button>
           </div>
-          <div id="whispersList" class="space-y-2 max-h-72 overflow-y-auto pr-1"></div>
+          <div id="wList" class="space-y-2 max-h-60 overflow-y-auto"></div>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT LOGIC (కమీషన్ సెట్టింగ్స్ & అన్ని ఫంక్షన్లు ఇక్కడ ఉన్నాయి)    -->
+  <!-- ===================================================================== -->
   <script>
+    // 1. నీ అసలు WhatsApp నంబర్ (ఇక్కడ మార్చుకో ప్రకాష్)
+    const ADMIN_WHATSAPP = "918985000000";
+
     // ==========================================
-    // 1. BIKE RIDER & FARE CALCULATOR LOGIC
+    // ట్రాన్స్‌పోర్ట్ & కమీషన్ లాజిక్
     // ==========================================
-    const MEDIATOR_PHONE = "918985000000"; // ఇక్కడ నీ అసలు WhatsApp నంబర్ పెట్టుకో ప్రకాష్!
+    let currentVehicle = "Bike";
+    let ratePerKm = 5;
 
-    function calculateBikeFare() {
-      const km = parseFloat(document.getElementById('rideKm').value) || 0;
-      const fare = Math.max(10, Math.round(km * 5)); // కనీసం ₹10, ఆ తర్వాత ₹5/km
-      document.getElementById('totalFareDisplay').innerText = `₹${fare}`;
+    function selectVehicle(type, rate) {
+      currentVehicle = type.toUpperCase();
+      ratePerKm = rate;
+
+      // బటన్ కలర్స్ అప్‌డేట్
+      document.querySelectorAll('.v-btn').forEach(b => {
+        b.classList.remove('bg-yellow-500', 'text-black');
+        b.classList.add('bg-gray-800', 'text-gray-300');
+      });
+      const activeBtn = document.getElementById(`btn-${type}`);
+      activeBtn.classList.remove('bg-gray-800', 'text-gray-300');
+      activeBtn.classList.add('bg-yellow-500', 'text-black');
+
+      // Stuff / Parcel ఎంచుకుంటే ప్రత్యేక బాక్స్ చూపించు
+      document.getElementById('stuffNoteBox').style.display = (type === 'stuff') ? 'block' : 'none';
+      calcTransport();
     }
 
-    function bookViaMediator() {
-      const from = document.getElementById('rideFrom').value.trim() || "బొడ్డవార";
-      const to = document.getElementById('rideTo').value.trim() || "S.Kota";
-      const km = document.getElementById('rideKm').value || 4;
-      const fare = document.getElementById('totalFareDisplay').innerText;
+    function calcTransport() {
+      const km = parseFloat(document.getElementById('tKm').value) || 0;
+      const riderFare = Math.max(10, Math.round(km * ratePerKm));
+      
+      // నీ కమీషన్ లాజిక్: 5 కి.మీ లోపు ₹5, 5 కి.మీ దాటితే ₹10 (నువ్వు ఎప్పుడైనా మార్చుకోవచ్చు)
+      let myCommission = (km <= 5) ? 5 : 10;
+      if (currentVehicle === 'STUFF') myCommission += 10; // స్పెషల్ డెలివరీకి అదనపు సర్వీస్ ఛార్జీ
 
-      const msg = `నమస్తే ప్రకాష్! నాకు బైక్ రైడ్ కావాలి:%0A📍 నుండి: ${from}%0A🏁 వరకు: ${to}%0A📏 దూరం: ${km} KM%0A💰 అంచనా ఛార్జీ: ${fare} (₹5/km)`;
-      window.open(`https://wa.me/${MEDIATOR_PHONE}?text=${msg}`, '_blank');
+      const total = riderFare + myCommission;
+      document.getElementById('tTotalFare').innerText = `₹${total}`;
+      document.getElementById('tCommInfo').innerText = `(రైడర్ ₹${riderFare} + సర్వీస్ ₹${myCommission})`;
     }
 
-    function toggleRiderForm() {
-      const form = document.getElementById('addRiderForm');
-      form.style.display = (form.style.display === 'none') ? 'block' : 'none';
+    function bookTransport() {
+      const from = document.getElementById('tFrom').value.trim() || "బొడ్డవార";
+      const to = document.getElementById('tTo').value.trim() || "S.Kota";
+      const km = document.getElementById('tKm').value || 5;
+      const total = document.getElementById('tTotalFare').innerText;
+      const stuff = document.getElementById('stuffDetails').value.trim();
+
+      let msg = `నమస్తే ప్రకాష్! కొత్త బుకింగ్:%0A🚘 వాహనం: ${currentVehicle}%0A📍 నుండి: ${from}%0A🏁 వరకు: ${to}%0A📏 దూరం: ${km} KM%0A💰 మొత్తం ఛార్జీ: ${total}`;
+      if (stuff) msg += `%0A📦 వివరాలు: ${stuff}`;
+      
+      window.open(`https://wa.me/${ADMIN_WHATSAPP}?text=${msg}`, '_blank');
     }
 
-    // Default Riders + LocalStorage Riders
+    // రైడర్ రిజిస్ట్రేషన్ & లిస్ట్ (కస్టమర్‌కి నంబర్ కనిపించకుండా Mediator ద్వారా కనెక్ట్)
     const defaultRiders = [
-      { name: "ప్రకాష్ (Mediator & Rider)", loc: "బొడ్డవార / కిల్తాంపాలెం", phone: "8985000000" },
-      { name: "రాజేష్ (Local Rider)", loc: "కిల్తాంపాలెం", phone: "9848012345" }
+      { name: "ప్రకాష్ (Admin)", type: "Bike", loc: "బొడ్డవార / కిల్తాంపాలెం" },
+      { name: "రమేష్", type: "Auto", loc: "కిల్తాంపాలెం" }
     ];
 
-    function loadRiders() {
-      const savedRiders = JSON.parse(localStorage.getItem('mana_seva_riders') || '[]');
-      const allRiders = [...defaultRiders, ...savedRiders];
-      const listEl = document.getElementById('ridersList');
-      listEl.innerHTML = "";
-
-      allRiders.forEach(r => {
-        listEl.innerHTML += `
-          <div class="bg-gray-800/80 p-2.5 rounded-xl border border-gray-700 flex items-center justify-between">
-            <div>
-              <p class="text-xs font-bold text-white">🏍️ ${r.name}</p>
-              <p class="text-[11px] text-gray-400">📍 ${r.loc} • ₹5/km</p>
-            </div>
-            <div class="flex gap-1.5">
-              <a href="tel:${r.phone}" class="bg-green-600 hover:bg-green-500 text-white text-[11px] font-bold px-3 py-1.5 rounded-lg">
-                📞 Call
-              </a>
-            </div>
+    function renderRiders() {
+      const saved = JSON.parse(localStorage.getItem('ms_riders') || '[]');
+      const all = [...defaultRiders, ...saved];
+      const container = document.getElementById('activeRidersList');
+      container.innerHTML = all.map(r => `
+        <div class="bg-gray-800/80 p-2.5 rounded-xl border border-gray-700 flex justify-between items-center text-xs">
+          <div>
+            <p class="font-bold text-white">✅ ${r.name} <span class="text-yellow-400">(${r.type})</span></p>
+            <p class="text-[10px] text-gray-400">📍 ${r.loc} • Verified Rider</p>
           </div>
-        `;
-      });
+          <button onclick="bookSpecificRider('${r.name}', '${r.type}')" class="bg-green-600 text-white font-bold px-3 py-1.5 rounded-lg text-[11px]">
+            📲 బుక్ చెయ్
+          </button>
+        </div>
+      `).join('');
     }
 
-    function registerRider() {
-      const name = document.getElementById('newRiderName').value.trim();
-      const loc = document.getElementById('newRiderLoc').value.trim();
-      const phone = document.getElementById('newRiderPhone').value.trim();
+    function addNewRider() {
+      const name = document.getElementById('rName').value.trim();
+      const type = document.getElementById('rType').value;
+      const loc = document.getElementById('rLoc').value.trim();
+      const phone = document.getElementById('rPhone').value.trim();
+      if (!name || !loc || phone.length < 10) return alert("అన్ని వివరాలు సరిగ్గా ఇవ్వండి!");
 
-      if (!name || !loc || phone.length < 10) {
-        alert("దయచేసి పేరు, ఊరు మరియు 10 అంకెల మొబైల్ నంబర్ సరిగ్గా ఇవ్వండి!");
-        return;
-      }
-
-      const savedRiders = JSON.parse(localStorage.getItem('mana_seva_riders') || '[]');
-      savedRiders.push({ name, loc, phone });
-      localStorage.setItem('mana_seva_riders', JSON.stringify(savedRiders));
-
-      document.getElementById('newRiderName').value = "";
-      document.getElementById('newRiderLoc').value = "";
-      document.getElementById('newRiderPhone').value = "";
-      toggleRiderForm();
-      loadRiders();
-      alert("🎉 అభినందనలు! మీ నంబర్ రైడర్స్ లిస్ట్‌లో యాడ్ అయింది.");
+      const saved = JSON.parse(localStorage.getItem('ms_riders') || '[]');
+      saved.push({ name, type, loc, phone });
+      localStorage.setItem('ms_riders', JSON.stringify(saved));
+      
+      // నీ WhatsApp కి కూడా కొత్త రైడర్ నంబర్ నోటిఫికేషన్ పంపుతుంది
+      window.open(`https://wa.me/${ADMIN_WHATSAPP}?text=కొత్త రైడర్ చేరారు:%0Aపేరు: ${name}%0Aవాహనం: ${type}%0Aఊరు: ${loc}%0Aఫోన్: ${phone}`, '_blank');
+      toggleBox('addRiderBox');
+      renderRiders();
     }
 
-    // ==========================================
-    // 2. DAILY LUCKY SPIN WHEEL
-    // ==========================================
-    function spinLuckyWheel() {
-      const today = new Date().toDateString();
-      if (localStorage.getItem('last_spin_date') === today) {
-        alert("మీరు ఈరోజు ఇప్పటికే స్పిన్ తిప్పారు! మళ్ళీ రేపు ప్రయత్నించండి 😊");
-        return;
-      }
-
-      const wheel = document.getElementById('spinWheel');
-      const deg = 1080 + Math.floor(Math.random() * 360);
-      wheel.style.transform = `rotate(${deg}deg)`;
-
-      const rewards = [
-        "🎉 ₹10 డిస్కౌంట్ కూపన్ గెలిచారు! (Code: SEVA10)",
-        "🎉 ₹5 బైక్ రైడ్ క్యాష్‌బ్యాక్! (Code: RIDE5)",
-        "🎉 ₹15 డెలివరీ డిస్కౌంట్! (Code: GIFT15)",
-        "🎉 ఫ్రీ 1 KM బైక్ రైడ్! (Code: FREE1KM)"
-      ];
-      const won = rewards[Math.floor(Math.random() * rewards.length)];
-
-      setTimeout(() => {
-        localStorage.setItem('last_spin_date', today);
-        const resEl = document.getElementById('spinResult');
-        resEl.innerText = won;
-        resEl.classList.remove('hidden');
-      }, 3100);
+    function bookSpecificRider(name, type) {
+      window.open(`https://wa.me/${ADMIN_WHATSAPP}?text=నమస్తే ప్రకాష్! నాకు ${name} (${type}) రైడ్ కావాలి. దయచేసి కనెక్ట్ చేయండి.`, '_blank');
     }
 
     // ==========================================
-    // 3. YOUTUBE PLAYER TOGGLE FIX
+    // OLX (BUY & SELL) లాజిక్
     // ==========================================
-    function toggleYouTubeBox() {
-      const box = document.getElementById('ytPlayerContainer');
-      const btn = document.getElementById('ytToggleBtn');
-      if (box.style.display === 'none') {
-        box.style.display = 'block';
-        btn.innerText = '✖️ Close Player';
-        btn.classList.replace('bg-red-600', 'bg-gray-700');
-      } else {
-        box.style.display = 'none';
-        btn.innerText = '▶️ Open Player';
-        btn.classList.replace('bg-gray-700', 'bg-red-600');
-      }
-    }
-
-    // ==========================================
-    // 4. SECRET WHISPER WALL (PHOTO + UNREAD BADGE)
-    // ==========================================
-    let selectedPhotoBase64 = "";
-    const MASTER_PIN = "8985";
-    const DEFAULT_PIN = "1430";
-    const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
-
-    function previewWhisperPhoto(event) {
+    let tempBase64 = "";
+    function compressImage(event, previewId) {
       const file = event.target.files[0];
       if (!file) return;
       const reader = new FileReader();
-      reader.onload = function(e) {
+      reader.onload = e => {
         const img = new Image();
-        img.onload = function() {
+        img.onload = () => {
           const canvas = document.createElement('canvas');
-          const MAX_WIDTH = 500;
-          const scaleSize = MAX_WIDTH / img.width;
-          canvas.width = MAX_WIDTH;
-          canvas.height = img.height * scaleSize;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-          selectedPhotoBase64 = canvas.toDataURL('image/jpeg', 0.7);
-          document.getElementById('photoPreviewImg').src = selectedPhotoBase64;
-          document.getElementById('photoPreviewBox').classList.remove('hidden');
+          const scale = 400 / img.width;
+          canvas.width = 400;
+          canvas.height = img.height * scale;
+          canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+          tempBase64 = canvas.toDataURL('image/jpeg', 0.7);
+          const prev = document.getElementById(previewId);
+          prev.src = tempBase64;
+          prev.classList.remove('hidden');
         };
         img.src = e.target.result;
       };
       reader.readAsDataURL(file);
     }
 
-    function clearPhoto() {
-      selectedPhotoBase64 = "";
-      document.getElementById('whisperPhotoInput').value = "";
-      document.getElementById('photoPreviewBox').classList.add('hidden');
+    function postOlxItem() {
+      const title = document.getElementById('itemTitle').value.trim();
+      const price = document.getElementById('itemPrice').value.trim();
+      const loc = document.getElementById('itemLoc').value.trim();
+      if (!title || !price) return alert("వస్తువు పేరు మరియు ధర తప్పనిసరి!");
+
+      const items = JSON.parse(localStorage.getItem('ms_olx') || '[]');
+      items.unshift({ title, price, loc, img: tempBase64 });
+      localStorage.setItem('ms_olx', JSON.stringify(items));
+      tempBase64 = "";
+      document.getElementById('itemPreview').classList.add('hidden');
+      toggleBox('sellFormBox');
+      renderOlx();
     }
 
-    function getWhispers() {
-      let whispers = JSON.parse(localStorage.getItem('prakash_whispers') || '[]');
-      const now = Date.now();
-      whispers = whispers.filter(w => (now - w.timestamp) < TWENTY_FOUR_HOURS);
-      localStorage.setItem('prakash_whispers', JSON.stringify(whispers));
-      return whispers;
+    function renderOlx() {
+      const defaultItems = [
+        { title: "Hero Splendor Plus", price: "28,000", loc: "బొడ్డవార", img: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=400" },
+        { title: "5 సెంట్ల ఇంటి స్థలం", price: "4,50,000", loc: "కిల్తాంపాలెం", img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400" }
+      ];
+      const saved = JSON.parse(localStorage.getItem('ms_olx') || '[]');
+      const all = [...saved, ...defaultItems];
+      document.getElementById('olxItemsList').innerHTML = all.map(item => `
+        <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 flex flex-col justify-between">
+          <img src="${item.img || 'https://via.placeholder.com/300x200?text=Photo'}" class="w-full h-24 object-cover">
+          <div class="p-2">
+            <p class="text-xs font-bold text-white truncate">${item.title}</p>
+            <p class="text-sm font-extrabold text-green-400">₹${item.price}</p>
+            <p class="text-[10px] text-gray-400">📍 ${item.loc}</p>
+            <button onclick="inquireService('OLX Deal: ${item.title} (₹${item.price})')" class="mt-1.5 w-full bg-yellow-500 text-black font-bold text-[11px] py-1 rounded">
+              కొనడానికి సంప్రదించు
+            </button>
+          </div>
+        </div>
+      `).join('');
     }
 
-    function postWhisper() {
-      const text = document.getElementById('whisperInput').value.trim();
-      if (!text && !selectedPhotoBase64) {
-        alert("దయచేసి ఏదైనా మెసేజ్ రాయండి లేదా ఫోటో సెలెక్ట్ చేయండి!");
-        return;
+    // ==========================================
+    // టూరిజం 5+ రియల్ ఫోటోల గ్యాలరీ
+    // ఇక్కడ నీ ఒరిజినల్ ఫోటో లింక్స్ మార్చుకోవచ్చు
+    // ==========================================
+    const tourData = {
+      thatipudi: [
+        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400",
+        "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400",
+        "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=400",
+        "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400",
+        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400"
+      ],
+      araku: [
+        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400",
+        "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400",
+        "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400",
+        "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400",
+        "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=400"
+      ],
+      vanjangi: [
+        "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400",
+        "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400",
+        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400",
+        "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=400",
+        "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=400"
+      ]
+    };
+
+    function loadTourPhotos(place) {
+      const photos = tourData[place] || [];
+      document.getElementById('tourGallery').innerHTML = photos.map((url, idx) => `
+        <img src="${url}" alt="Photo ${idx+1}" class="w-40 h-28 object-cover rounded-xl shrink-0 border border-gray-700">
+      `).join('');
+    }
+
+    // ==========================================
+    // సాధారణ సహాయక ఫంక్షన్లు & Secret Whisper
+    // ==========================================
+    function toggleBox(id) {
+      const el = document.getElementById(id);
+      el.style.display = (el.style.display === 'none') ? 'block' : 'none';
+    }
+
+    function toggleYouTube() {
+      const box = document.getElementById('ytBox');
+      const btn = document.getElementById('ytBtn');
+      if (box.style.display === 'none') {
+        box.style.display = 'block';
+        btn.innerText = '✖️ Close';
+      } else {
+        box.style.display = 'none';
+        btn.innerText = '▶️ Open';
       }
-      const whispers = getWhispers();
-      whispers.unshift({
-        id: Date.now(),
-        text: text,
-        photo: selectedPhotoBase64,
-        timestamp: Date.now(),
-        isRead: false
-      });
-      localStorage.setItem('prakash_whispers', JSON.stringify(whispers));
-      document.getElementById('whisperInput').value = "";
-      clearPhoto();
-      updateBadge();
-      alert("🤫 మీ సీక్రెట్ పోస్ట్ యాడ్ అయింది!");
-      if (!document.getElementById('unlockedBox').classList.contains('hidden')) {
-        renderWhispers(true);
-      }
     }
 
-    function updateBadge() {
-      const whispers = getWhispers();
-      const unreadCount = whispers.filter(w => !w.isRead).length;
+    function orderVeg(item) {
+      window.open(`https://wa.me/${ADMIN_WHATSAPP}?text=నమస్తే ప్రకాష్! కూరగాయల ఆర్డర్: ${item}`, '_blank');
+    }
+
+    function inquireService(topic) {
+      window.open(`https://wa.me/${ADMIN_WHATSAPP}?text=నమస్తే ప్రకాష్! నాకు దీని గురించి వివరాలు కావాలి: ${topic}`, '_blank');
+    }
+
+    // Secret Whisper Wall Logic (Unread Badge + 24hr Expiry)
+    function saveWhisper() {
+      const text = document.getElementById('wText').value.trim();
+      if (!text && !tempBase64) return alert("మెసేజ్ లేదా ఫోటో యాడ్ చేయండి!");
+      let list = JSON.parse(localStorage.getItem('ms_whispers') || '[]');
+      list = list.filter(w => (Date.now() - w.ts) < 86400000);
+      list.unshift({ text, img: tempBase64, ts: Date.now(), read: false });
+      localStorage.setItem('ms_whispers', JSON.stringify(list));
+      document.getElementById('wText').value = "";
+      tempBase64 = "";
+      document.getElementById('wPreview').classList.add('hidden');
+      updateWhisperBadge();
+      alert("🤫 సీక్రెట్ మెసేజ్ పోస్ట్ అయింది!");
+    }
+
+    function updateWhisperBadge() {
+      let list = JSON.parse(localStorage.getItem('ms_whispers') || '[]').filter(w => (Date.now() - w.ts) < 86400000);
+      const unread = list.filter(w => !w.read).length;
       const badge = document.getElementById('whisperBadge');
-      if (unreadCount > 0) {
-        badge.innerText = `🔔 ${unreadCount} New`;
+      if (unread > 0) {
+        badge.innerText = `🔔 ${unread} New`;
         badge.classList.remove('hidden');
       } else {
         badge.classList.add('hidden');
       }
     }
 
-    function unlockWhispers() {
-      const pin = document.getElementById('pinInput').value;
-      if (pin === DEFAULT_PIN || pin === MASTER_PIN) {
-        document.getElementById('lockedBox').classList.add('hidden');
-        document.getElementById('unlockedBox').classList.remove('hidden');
-        document.getElementById('pinInput').value = "";
-        renderWhispers(true);
+    function unlockWhisper() {
+      const pin = document.getElementById('wPin').value;
+      if (pin === "1430" || pin === "8985") {
+        document.getElementById('wLocked').classList.add('hidden');
+        document.getElementById('wUnlocked').classList.remove('hidden');
+        let list = JSON.parse(localStorage.getItem('ms_whispers') || '[]').filter(w => (Date.now() - w.ts) < 86400000);
+        document.getElementById('wList').innerHTML = list.map(w => {
+          w.read = true;
+          return `<div class="bg-gray-800 p-2 rounded-lg text-xs">${w.text ? `<p>${w.text}</p>` : ''}${w.img ? `<img src="${w.img}" class="w-full h-32 object-cover rounded mt-1">` : ''}</div>`;
+        }).join('') || '<p class="text-xs text-gray-400">మెసేజ్‌లు లేవు.</p>';
+        localStorage.setItem('ms_whispers', JSON.stringify(list));
+        updateWhisperBadge();
       } else {
-        alert("❌ తప్పు PIN! మళ్ళీ ప్రయత్నించండి (Hint: 1430)");
+        alert("తప్పు PIN!");
       }
     }
 
-    function lockWhispers() {
-      document.getElementById('unlockedBox').classList.add('hidden');
-      document.getElementById('lockedBox').classList.remove('hidden');
+    function lockWhisper() {
+      document.getElementById('wUnlocked').classList.add('hidden');
+      document.getElementById('wLocked').classList.remove('hidden');
     }
 
-    function renderWhispers(markAsRead = false) {
-      let whispers = getWhispers();
-      const listEl = document.getElementById('whispersList');
-      listEl.innerHTML = "";
-      if (whispers.length === 0) {
-        listEl.innerHTML = `<p class="text-xs text-gray-400 text-center py-3">ఇంకా ఏ సీక్రెట్ మెసేజ్‌లు లేవు. మొదటిది మీరే పోస్ట్ చేయండి!</p>`;
-        return;
-      }
-      whispers.forEach(w => {
-        if (markAsRead) w.isRead = true;
-        const timeAgo = Math.max(1, Math.floor((Date.now() - w.timestamp) / (1000 * 60)));
-        const timeText = timeAgo < 60 ? `${timeAgo} ని|| క్రితం` : `${Math.floor(timeAgo/60)} గం|| క్రితం`;
-        const photoHtml = w.photo ? `<img src="${w.photo}" class="w-full max-h-48 object-cover rounded-lg mt-2 border border-gray-600">` : "";
-        const textHtml = w.text ? `<p class="text-xs text-gray-100">${w.text}</p>` : "";
-        listEl.innerHTML += `
-          <div class="bg-gray-800 p-2.5 rounded-xl border border-gray-700">
-            ${textHtml}
-            ${photoHtml}
-            <div class="flex justify-between items-center mt-1.5 text-[10px] text-gray-400">
-              <span>🕒 ${timeText}</span>
-              <span class="text-blue-400">✓✓ Seen</span>
-            </div>
-          </div>
-        `;
-      });
-      if (markAsRead) {
-        localStorage.setItem('prakash_whispers', JSON.stringify(whispers));
-        updateBadge();
-      }
-    }
-
-    // Initialize Everything on Page Load
+    // పేజీ లోడ్ అవ్వగానే అన్నీ సెటప్ చెయ్
     window.addEventListener('DOMContentLoaded', () => {
-      loadRiders();
-      updateBadge();
+      calcTransport();
+      renderRiders();
+      renderOlx();
+      loadTourPhotos('thatipudi');
+      updateWhisperBadge();
     });
   </script>
 </body>
